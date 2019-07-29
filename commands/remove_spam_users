@@ -1,0 +1,29 @@
+\\ Removing Spam Users
+\\ you should change the values to match your particular needs. I left these in to provide an example of what you might want to use.
+\\ For reference: before cleaning our database, we had ~40,000 accounts. After cleaning, ~1500.
+
+\\ It goes without saying (again): test this before doing this in production!
+
+DELETE FROM `users` WHERE `email` LIKE '%@%.ua';
+DELETE FROM `users` WHERE `email` LIKE '%@%.ru';
+DELETE FROM `users` WHERE `COUNTRY` LIKE 'zw';
+DELETE FROM `users` WHERE `mailing_address` LIKE '%@%.com';
+DELETE FROM `users` WHERE `url` LIKE '.biz';
+DELETE FROM `users` WHERE `url` LIKE '.info';
+DELETE FROM `users` WHERE `middle_name` LIKE '%Ð%';
+DELETE FROM `users` WHERE `mailing_address` LIKE '%@%.%';
+DELETE FROM `users` WHERE `email` LIKE '%+%@gmail.com';
+DELETE FROM `users` WHERE `country` LIKE 'RU';
+
+DELETE FROM user_settings WHERE user_id NOT IN (SELECT user_id FROM users);
+DELETE FROM user_interests WHERE user_id NOT IN (SELECT user_id FROM users);
+
+\\ Remove Spam User Interests
+
+DELETE FROM `controlled_vocab_entry_settings` WHERE setting_name LIKE 'interest' AND LENGTH(setting_value) > 10 ;
+DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%д%';
+DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%л%';
+DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%б%';
+DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%к%';
+DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '$RandomStr%';
+DELETE FROM controlled_vocab_entries WHERE controlled_vocab_entry_id NOT IN (SELECT controlled_vocab_entry_id FROM controlled_vocab_entry_settings) ;

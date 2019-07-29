@@ -1,0 +1,8 @@
+\\ Removing Inactive Users
+\\ you can always be more agressive here, I guess. Knock yourself out. 
+
+\\ It goes without saying (again): test this before doing this in production!
+
+DELETE FROM `users` WHERE `date_last_login` like '2011-%'
+DELETE FROM `users` WHERE `date_last_login` like '2012-%'
+DELETE FROM user_settings WHERE user_id NOT IN (SELECT user_id FROM users)
