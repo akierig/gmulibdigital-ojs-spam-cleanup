@@ -26,4 +26,4 @@ DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%л%';
 DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%б%';
 DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '%к%';
 DELETE FROM `controlled_vocab_entry_settings` WHERE setting_value like '$RandomStr%';
-DELETE FROM controlled_vocab_entries WHERE controlled_vocab_entry_id NOT IN (SELECT controlled_vocab_entry_id FROM controlled_vocab_entry_settings) ;
+DELETE FROM `controlled_vocab_entries` WHERE controlled_vocab_entry_id NOT IN (SELECT controlled_vocab_entry_id FROM controlled_vocab_entry_settings);
