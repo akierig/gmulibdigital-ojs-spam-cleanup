@@ -1,8 +1,7 @@
 \\ Removing Spam Users
 \\ you should change the values to match your particular needs. I left these in to provide an example of what you might want to use.
-\\ For reference: before cleaning our database, we had ~40,000 accounts. After cleaning, ~1500.
-
-\\ It goes without saying (again): test this before doing this in production!
+\\ For reference: before cleaning our database, we had ~40,000 accounts. After cleaning, ~1500, that is to say, we had ~38,500 spam users!
+\\ It goes without saying (again): test this before doing this in production! Please.
 
 DELETE FROM `users` WHERE `email` LIKE '%@%.ua';
 DELETE FROM `users` WHERE `email` LIKE '%@%.ru';
